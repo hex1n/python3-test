@@ -1,4 +1,5 @@
-[toc]
+[](https://)[toc]
+
 # 第一章
 
 ## Python常用的值类型
@@ -147,24 +148,32 @@ Python 中最常用的三类占位符
 # 第三章
 
 ## 布尔类型的定义
+
 > 布尔类型的字面量
+>
 > * True 表示真 (是、肯定)
 > * False 表示假 (否、否定)
-> 
+>
 > 定义变量存储布尔类型数据:
 > 变量名称 =  布尔类型字面量
 
 ## 比较运算符
+
 ![比较运算符.png](img%2F%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6.png)
 
 ## if判断语句
+
 > 程序中的判断
+
 ```python
 if 1>2: 
        print('条件成立时,要做的事情') 
 ```
+
 ### if-else 组合判断语句
+
 > 语法
+
 ```python
 if 1>2:
    print("满足条件 do something")
@@ -173,7 +182,9 @@ else:
 ```
 
 ### if-elif-else 语句
+
 > 语法
+
 ```python
 num = 10
 if num>2:
@@ -185,8 +196,11 @@ elif num==20:
 else:
   print("满足条件 do something")
 ```
+
 ## 判断语句的嵌套
+
 > 语法
+
 ```python
 num = 4
 num1 = 2
@@ -203,16 +217,20 @@ else:
 # 第四章
 
 ## while 循环的基础应用
+
 > 语法
+
 ```python
 count = 1
 while count<10 :
   print("do something")
   count+=1
 ```
+
 只要满足条件,会无限循环
 
 ## while 循环嵌套
+
 ```python
 count = 1
 while count<10 :
@@ -221,12 +239,16 @@ while count<10 :
   while count < 5 :
     print("do something 2")
 ```
+
 ## 补充-print 输出不换行
+
 ```python
 print("hello",end='')
 print("world",end='')
 ```
+
 ## 补充-制表符\t
+
 > 在字符串中,有一个特殊符号:\t,效果同等于键盘的: tab键
 
 ```python
@@ -238,15 +260,20 @@ print("hi\tnihao")
 ```
 
 ## for循环
+
 > 语法
+
 ```python
 # 遍历字符串
 name = "nihaohahaheihei"
 for x in name :
     print(x)
 ```
+
 ### range语句
+
 > 语法1
+
 ```python
 
 # range(num)
@@ -254,13 +281,17 @@ range(5)
 # 获取一个从0开始,到num结束的数字序列(不包含num本身)
 # 如range(5)取得的数据是:[0,1,2,3,4]
 ```
+
 > 语法2
+
 ```python
 # range(num1,num2)
 range(5,10)
 # 取得的数据是:[5,6,7,8,9]
 ```
+
 > 语法3
+
 ```python
 # range(num1,num2,step)
 range(5,10,2)
@@ -268,6 +299,202 @@ range(5,10,2)
 #数字之间的步长,以step为准(step默认为1)
 #如range(5,10,2) 取得的数据是:[5,7,9]
 ```
+
 range语句总结:
 ![img.png](img/range语句总结.png)
 
+### continue和break
+
+> continue 关键字用于 : **中断本次循环,直接进入下一次循环**
+>
+> continue 可以用于: **for 循环和while 循环,效果一致**
+>
+> 应用场景: 在循环中,因某些原因,临时结束本次循环
+>
+> 代码示例:
+
+```python
+for i in range(1, 6):
+  print("语句1")
+  continue
+  print("语句2")  # 因为上面的continue 不会执行本行代码
+
+# continue嵌套循环
+
+for i in range(1,6): #1
+    print("1")
+    for j in range(1,6): #2
+        print("2")
+        continue # 此处的continue控制的是当前循环 #2
+        print("3") # 本行代码不会执行
+    print("4")
+```
+
+> break 关键字用于: **直接结束循环**
+> break 可以用于: **for循环和while循环,效果一致**
+
+````python
+for i in range(1,100):
+    print("语句1")
+    break
+    print("语句2")
+print("语句3")
+# 上面代码在执行了语句1后直接执行语句3
+````
+
+> **总结:**
+>
+> * continue 的作用是: 中断所在循环的当次循环,直接进入下一次
+> * break 的作用是: 直接结束所在循环
+
+# 第五章
+
+## 函数
+
+> 函数: 是组织好的,可重复使用的,用来实现特定功能的 **代码段**
+> 函数的定义:
+
+````python
+def 函数名(传入参数):
+    # 函数体 todo
+    return # 返回值 不需要时可以省略
+
+````
+
+### 函数传入参数
+
+> 语法:
+
+````python
+def add(x, y):
+    result = x + y
+    print(f"{x}+{y}的结果是:{result}")
+
+#调用函数
+add(5,6)
+````
+
+> * 函数定义中,提供x和y 称为: 形式参数(形参),表示函数声明将要使用2个参数 **参数之间使用逗号分隔**
+> * 函数调用中,提供的 5, 6 称为: 实际参数(实参), 表示函数执行时真正使用的参数值 **传入的时候,按照顺序传入数据,使用逗号分隔**
+
+### 返回值
+
+````python
+def add(x, y, z):
+    return x + y + z
+
+
+total = add(1, 2, 3)
+print(f"total:{total}")
+````
+
+### None类型
+
+> None 表示: 空的、无实际意义的意思
+> 函数没有使用return语句返回数据,那么函数的返回值是None 也就是返回了空的意思
+>
+> 应用场景:
+>
+> * 用在函数无返回值上
+> * 用在if判断上
+> * - 在if 判断中,None等同于False
+> * - 一般用于函数中主动返回 None 配合if 判断做相关处理
+> * 用在声明无内容的变量上
+> * - 定义变量,但暂时不需要变量有具体值,可以用None来代替: name=None
+
+### 函数的嵌套调用
+
+> 指的是一个函数里面又调用了另一个函数
+>
+> 代码示例:
+
+````python
+def func_b():
+    print("this is func_b")
+
+
+# 定义函数func_a 并在内部调用func_b
+def func_a():
+    func_b()
+    print("this is func_a")
+
+
+func_a()
+````
+
+### 局部变量和全全局变量
+
+> * 局部变量: 作用范围在函数内部,在函数外部无法使用
+> * 全局变量: 在函数内部外部都可以使用
+> * 使用 `global` 关键字 , global变量
+
+# 第六章
+
+## 数据容器
+
+> 一种可以容纳多份数据的数据类型,容纳的每一份数据称之为1个元素  每一个元素可以是任意类型的数据,如 字符串、数字、布尔等
+> python中的数据容器:
+>
+> * list(列表)
+> * tuple(元组)
+> * str(字符串)
+> * set(集合)
+> * dict(字典)
+
+### list列表
+
+> * 字面量: [元素1,元素2,元素3,元素4,....]
+> * 定义变量: 变量名称=[元素1,元素2,元素3,元素4,....]
+> * 定义空列表:
+> * - 变量名称=[]
+> * - 变量名称=list()
+
+列表内的每一个数据,称之为元素
+
+* 以 [] 作为标识
+* 列表内每个元素之间用 , 逗号隔开
+
+常用API
+![list列表常用方法.png](img%2Flist%E5%88%97%E8%A1%A8%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.png)
+
+> 列表的特点:
+> * 可以容纳多个元素(上限为2**63-1、9223372036854775807个)
+> * 可以容纳不同类型的元素(混装)
+> * 数据是有序存储的(有下标序号)
+> * 允许重复数剧存在
+> * 可以修改(增加或删除元素等)
+
+#### 列表的遍历
+````python
+# 使用while循环遍历列表
+my_list = ['nihao', 'hello', 'haha', 'hehe']
+index = 0
+while index < len(my_list):
+    print(f"使用while遍历列表:{my_list[index]}")
+    index += 1
+
+print("====================")
+
+# 使用 for循环 遍历列表
+for x in my_list:
+    print(f"使用for循环遍历列表:{x}")
+````
+while 循环和 for循环对比:
+![list列表遍历-while-for对比.png](img%2Flist%E5%88%97%E8%A1%A8%E9%81%8D%E5%8E%86-while-for%E5%AF%B9%E6%AF%94.png)
+
+### 元组
+> 元组定义: 定义元组使用小括号,且使用逗号分隔各个数据,数据可以是不同的数据类型
+ 
+````python
+# 定义元组字面量
+('元素1','元素2',1,2,False)
+# 定义元组变量
+ele = ('元素1','元素2',1,2,False)
+# 定义空元组
+ele = () # 方式1
+ele = tuple() # 方式2 
+````
+相关操作方法:
+* ``index()`` : 查找某个数据,如果数据存在返回相应下标,否则报错
+* ``count()`` : 统计某个数据在当前元组出现的次数
+* ``len(元组)``   : 统计元组内的元素个数
